@@ -41,6 +41,4 @@ export default TabNavigator({
             }
         }
     }
-})
-
-
+});
