@@ -93,7 +93,7 @@ function nextSlide(slide) { //Animation code
         }
         ).start() 
     } else {
-        this.props.navigation.navigate('MainNavigation');//Add naviagtion code here pls
+        this.props.navigation.navigate('Home');//Add naviagtion code here pls
     }
 }
 

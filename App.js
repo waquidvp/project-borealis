@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
-import BottomNavigation from './src/navigators/AndroidBottomNav';
+import MainNavigation from './src/navigators/MainNavigation';
 import SignIn from './src/screens/SignIn.js';
 
 export default class App extends React.Component {
   render() {
     if (checkLogin === true) {
       return (
-        <BottomNavigation />
+        <MainNavigation />
       );
     } else {
       return (
