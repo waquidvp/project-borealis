@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text,TextInput,Dimensions } from 'react-native';
+import { View, Text, TextInput, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 
@@ -35,6 +35,10 @@ class UserInput extends React.Component {
 }
 
 export default class SignIn extends React.Component {
+    static navigationOptions = {
+        title: 'Sign In',
+    }
+    
     render(){
         return(
             <MainContainer>
