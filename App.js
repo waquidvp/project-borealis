@@ -1,12 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
 import BottomNavigation from './src/navigators/AndroidBottomNav';
+import SignIn from './src/screens/SignIn.js';
 
 export default class App extends React.Component {
   render() {
-    return (
-      <BottomNavigation />
-    );
+    if (checkLogin === true) {
+      return (
+        <BottomNavigation />
+      );
+    } else {
+      return (
+        <SignIn />
+      );
+    }
   }
+}
+
+function checkLogin() {
+  try {
+      AsyncStorage.getItem('@weight:key').then((value) => {
+        if (value !== null) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    } catch (error) {
+      // Error getting data so display sign-in page
+      return false
+    }
 }

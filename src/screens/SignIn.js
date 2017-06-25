@@ -38,7 +38,7 @@ class SubmitBox extends React.Component {
         return( 
             <TouchableHighlight underlayColor={"transparent"} style={{
             paddingBottom: Screen.width / 8, paddingLeft: Screen.width / 4}}
-            onPress={() => {nextSlide()}}>
+            onPress={() => {nextSlide(this.props.Slide)}}>
                 <Text style={{color:'white', fontSize:20,}}>Submit</Text>
             </TouchableHighlight>
         )
@@ -61,12 +61,12 @@ export default class SignIn extends React.Component { //Main code to be displaye
                     <Animated.View style={{transform: [{translateX: firstSlideX}]}}>
                         <UserInput Type={'Name'} Message={'Enter your name'}/>
                         <UserInput Type={'Email'} Message={'Enter your email address'}/>
-                        <SubmitBox />
+                        <SubmitBox Slide={1}/>
                     </Animated.View>
                     <Animated.View style={{transform: [{translateX: secondSlideX}]}}>
                         <UserInput Type={'Age'} Message={'Enter your age'}/>
                         <UserInput Type={'Weight'} Message={'Enter your weight'}/>
-                        <SubmitBox />
+                        <SubmitBox Slide={2}/>
                     </Animated.View>
                 </View>
             </MainContainer>
@@ -74,23 +74,27 @@ export default class SignIn extends React.Component { //Main code to be displaye
     }
 }
 
-function nextSlide() { //Animation code
-Animated.timing(
-    firstSlideX,
-    {
-        toValue: -500,
-        duration: 200,
-        easing: Easing.linear
+function nextSlide(slide) { //Animation code
+    if (slide !== 2) {
+        Animated.timing(
+        firstSlideX,
+        {
+            toValue: -500,
+            duration: 200,
+            easing: Easing.linear
+        }
+        ).start() 
+        Animated.timing(
+        secondSlideX,
+        {
+            toValue: -400,
+            duration: 200,
+            easing: Easing.linear
+        }
+        ).start() 
+    } else {
+        this.props.navigation.navigate('MainNavigation');//Add naviagtion code here pls
     }
-    ).start() 
-Animated.timing(
-    secondSlideX,
-    {
-        toValue: -400,
-        duration: 200,
-        easing: Easing.linear
-    }
-    ).start() 
 }
 
 function saveInfo(info,type) { //Code for saving the text from TextInput
